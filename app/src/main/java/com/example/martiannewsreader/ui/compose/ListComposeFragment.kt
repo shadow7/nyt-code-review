@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.martiannewsreader.R
 import com.example.martiannewsreader.util.FragmentWithMenu
 import com.example.martiannewsreader.util.Languages
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -24,6 +25,7 @@ import kotlinx.coroutines.flow.onEach
  * This is a Jetpack Compose version of [ListFragment]
  */
 class ListComposeFragment : FragmentWithMenu() {
+    private var shouldShowSavedArticlesFlow = MutableStateFlow(false)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,12 +39,13 @@ class ListComposeFragment : FragmentWithMenu() {
             // is destroyed
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                // In Compose world
+                val shouldShowSavedArticles by shouldShowSavedArticlesFlow.collectAsState()
                 MaterialTheme {
                     val isLoading by sharedViewModel.isLoadingArticlesFlow.collectAsState()
                     val articles by sharedViewModel.articlesFlow.collectAsState()
 
                     ArticleListContent(
+                        shouldShowSavedArticles = shouldShowSavedArticles,
                         isLoading = isLoading,
                         articles = articles,
                         onArticleSelected = { index ->
@@ -72,6 +75,11 @@ class ListComposeFragment : FragmentWithMenu() {
 
             R.id.settings_action_button -> {
                 findNavController().navigate(R.id.action_listComposeFragment_to_settingsFragment)
+                true
+            }
+
+            R.id.second_button -> {
+                shouldShowSavedArticlesFlow.value = !shouldShowSavedArticlesFlow.value
                 true
             }
 
