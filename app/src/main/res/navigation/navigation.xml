@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.martiannewsreader.ui.compose.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_compose">
+        <action
+            android:id="@+id/action_homeFragment_to_listXMLFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listComposeFragment"
+            app:destination="@id/listComposeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.martiannewsreader.ui.xml.ListFragment"
+        android:label="@string/articles_xml"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_listFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.martiannewsreader.ui.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.martiannewsreader.ui.xml.DetailFragment"
+        android:label=""
+        tools:layout="@layout/fragment_detail">
+        <action
+            android:id="@+id/action_detailFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listComposeFragment"
+        android:name="com.example.martiannewsreader.ui.compose.ListComposeFragment"
+        android:label="@string/articles_compose"
+        tools:layout="@layout/fragment_compose">
+        <action
+            android:id="@+id/action_listComposeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+
+        <action
+            android:id="@+id/action_listComposeFragment_to_detailsComposeFragment"
+            app:destination="@id/detailComposeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailComposeFragment"
+        android:name="com.example.martiannewsreader.ui.compose.DetailsComposeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_compose">
+        <action
+            android:id="@+id/action_detailComposeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+</navigation>

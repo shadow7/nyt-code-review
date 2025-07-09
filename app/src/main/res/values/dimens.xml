@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="articles_list_item_height">240dp</dimen>
+    <dimen name="article_list_item_title_text_size">21sp</dimen>
+    <dimen name="article_body_text_size">16sp</dimen>
+    <dimen name="article_image_height">180dp</dimen>
+    <dimen name="image_picker_button_radius">60dp</dimen>
+</resources>
